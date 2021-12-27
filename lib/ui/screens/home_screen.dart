@@ -1,8 +1,9 @@
+import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:glassmorphism_flutter/ui/screens/food_screen.dart';
+import 'package:glassmorphism_flutter/ui/screens/profile_screen.dart';
 import 'package:glassmorphism_flutter/ui/widgets/glass.dart';
-import 'package:glassmorphism_flutter/ui/widgets/glass_container.dart';
-import 'package:glassmorphism_flutter/ui/widgets/hs_glass_card.dart';
-import 'package:glassmorphism_flutter/ui/widgets/path_painter.dart';
+import 'package:glassmorphism_flutter/ui/widgets/home_screen_body.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -12,215 +13,50 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
-  late final AnimationController _heartAnimationController =
-      AnimationController(
-    duration: const Duration(milliseconds: 500),
-    vsync: this,
-  )..repeat(reverse: true);
-  late final Animation<double> _animationScale = CurvedAnimation(
-    parent: _heartAnimationController,
-    curve: Curves.bounceOut,
-  );
-  late AnimationController _cardAnimationsController;
-  late Animation<double> _cardScale1;
-  late Animation<double> _cardScale2;
-  late Animation<double> _cardScale3;
+  final _bottomNavPages = const <Widget>[
+    HomeScreenBody(),
+    FoodScreen(),
+    ProfileScreen(),
+  ];
 
-  @override
-  void initState() {
-    super.initState();
-    _cardAnimationsController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 1000),
-    );
-
-    _cardScale1 = CurvedAnimation(
-      parent: _cardAnimationsController,
-      curve: const Interval(0.0, 0.400),
-    );
-    _cardScale2 = CurvedAnimation(
-      parent: _cardAnimationsController,
-      curve: const Interval(0.400, 0.800),
-    );
-    _cardScale3 = CurvedAnimation(
-      parent: _cardAnimationsController,
-      curve: const Interval(0.800, 0.999),
-    );
-
-    _cardAnimationsController.forward();
-  }
-
-  @override
-  void dispose() {
-    _cardAnimationsController.dispose();
-    _heartAnimationController.dispose();
-    super.dispose();
-  }
+  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
-      body: Stack(
-        children: [
-          Image.asset(
-            'assets/images/background.jpg',
-            fit: BoxFit.fitHeight,
-            height: double.infinity,
-          ),
-          GlassMorphism(
-            start: .3,
-            end: .3,
-            borderRadius: 10,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 8.0, right: 15, left: 15),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(
-                    height: 40,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text(
-                        'Welcome to \nGlassFit!',
-                        style: TextStyle(fontSize: 30),
-                      ),
-                      CircleAvatar(
-                        radius: 30,
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'Steps:',
-                      ),
-                      RichText(
-                        text: const TextSpan(
-                          text: '1250',
-                          style: TextStyle(fontSize: 120),
-                          children: [
-                            TextSpan(
-                              text: '/10000',
-                              style: TextStyle(fontSize: 16),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        flex: 1,
-                        child: Column(
-                          children: [
-                            ScaleTransition(
-                              scale: _cardScale1,
-                              child: const HomeScreenGlassCard(
-                                  title: 'Training',
-                                  definition: 'hours',
-                                  value: '15:33'),
-                            ),
-                            const SizedBox(
-                              height: 15,
-                            ),
-                            ScaleTransition(
-                              scale: _cardScale2,
-                              child: const HomeScreenGlassCard(
-                                  title: 'Distance',
-                                  definition: 'Kilometters',
-                                  value: '12'),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Expanded(
-                        flex: 2,
-                        child: ScaleTransition(
-                          scale: _cardScale3,
-                          child: GlassContainer(
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 10.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const Padding(
-                                    padding: EdgeInsets.only(left: 8.0),
-                                    child: Text(
-                                      'Heart Rate',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 30,
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 200,
-                                    width: double.infinity,
-                                    child: CustomPaint(
-                                      painter: ChartPainter(),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 8.0),
-                                    child: Row(
-                                      children: [
-                                        const Text('BMP: 111'),
-                                        ScaleTransition(
-                                          scale: _animationScale,
-                                          child: const Icon(
-                                            Icons.favorite,
-                                            color: Colors.red,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
+      body: _bottomNavPages[_currentIndex],
       bottomNavigationBar: GlassMorphism(
         start: .3,
         end: .3,
         borderRadius: 30,
-        child: BottomNavigationBar(
+        child: BottomNavyBar(
+          showElevation: false,
+          selectedIndex: _currentIndex,
           backgroundColor: Colors.transparent,
-          elevation: 0,
-          items: const [
-            BottomNavigationBarItem(
-              label: 'Smt',
-              icon: Icon(Icons.add),
+          onItemSelected: (value) => setState(() {
+            _currentIndex = value;
+          }),
+          items: [
+            BottomNavyBarItem(
+              icon: const Icon(Icons.home),
+              title: const Text('Home'),
+              activeColor: Colors.white,
+              textAlign: TextAlign.center,
             ),
-            BottomNavigationBarItem(
-              label: 'Smt',
-              icon: Icon(Icons.add),
+            BottomNavyBarItem(
+              icon: const Icon(Icons.food_bank),
+              title: const Text('Food'),
+              activeColor: Colors.white,
+              textAlign: TextAlign.center,
             ),
-            BottomNavigationBarItem(
-              label: 'Smt',
-              icon: Icon(Icons.add),
+            BottomNavyBarItem(
+              icon: const Icon(Icons.account_circle),
+              title: const Text(
+                'Messages test for mes teset test test ',
+              ),
+              activeColor: Colors.white,
+              textAlign: TextAlign.center,
             ),
           ],
         ),
