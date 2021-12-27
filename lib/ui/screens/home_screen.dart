@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:glassmorphism_flutter/ui/widgets/glass.dart';
+import 'package:glassmorphism_flutter/ui/widgets/glass_container.dart';
+import 'package:glassmorphism_flutter/ui/widgets/hs_glass_card.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -32,7 +34,7 @@ class HomeScreen extends StatelessWidget {
                     children: const [
                       Text(
                         'Welcome to \nGlassFit!',
-                        style: TextStyle(color: Colors.white, fontSize: 30),
+                        style: TextStyle(fontSize: 30),
                       ),
                       CircleAvatar(
                         radius: 30,
@@ -47,7 +49,6 @@ class HomeScreen extends StatelessWidget {
                     children: [
                       const Text(
                         'Steps:',
-                        style: TextStyle(color: Colors.white),
                       ),
                       RichText(
                         text: const TextSpan(
@@ -62,6 +63,36 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                     ],
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: Column(
+                          children: const [
+                            HomeScreenGlassCard(
+                                title: 'Training',
+                                definition: 'hours',
+                                value: '15:33'),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            HomeScreenGlassCard(
+                                title: 'Distance',
+                                definition: 'Kilometters',
+                                value: '12'),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Expanded(
+                        child: GlassContainer(
+                          child: Container(),
+                        ),
+                      ),
+                    ],
                   )
                 ],
               ),
@@ -70,13 +101,13 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: GlassMorphism(
-        start: .4,
-        end: .4,
+        start: .3,
+        end: .3,
         borderRadius: 30,
         child: BottomNavigationBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
-          items: [
+          items: const [
             BottomNavigationBarItem(
               label: 'Smt',
               icon: Icon(Icons.add),
