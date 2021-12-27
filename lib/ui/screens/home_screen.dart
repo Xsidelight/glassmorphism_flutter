@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:glassmorphism_flutter/ui/widgets/glass.dart';
 import 'package:glassmorphism_flutter/ui/widgets/glass_container.dart';
 import 'package:glassmorphism_flutter/ui/widgets/hs_glass_card.dart';
+import 'package:glassmorphism_flutter/ui/widgets/path_painter.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -65,6 +66,7 @@ class HomeScreen extends StatelessWidget {
                     ],
                   ),
                   Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Expanded(
                         flex: 1,
@@ -85,11 +87,48 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(
-                        width: 5,
+                        width: 10,
                       ),
                       Expanded(
+                        flex: 2,
                         child: GlassContainer(
-                          child: Container(),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 10.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Padding(
+                                  padding: EdgeInsets.only(left: 8.0),
+                                  child: Text(
+                                    'Heart Rate',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 30,
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 200,
+                                  width: double.infinity,
+                                  child: CustomPaint(
+                                    painter: ChartPainter(),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 8.0),
+                                  child: Row(
+                                    children: const [
+                                      Text('BMP: 111'),
+                                      Icon(
+                                        Icons.favorite,
+                                        color: Colors.red,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       ),
                     ],
