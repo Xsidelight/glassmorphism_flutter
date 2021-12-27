@@ -4,8 +4,58 @@ import 'package:glassmorphism_flutter/ui/widgets/glass_container.dart';
 import 'package:glassmorphism_flutter/ui/widgets/hs_glass_card.dart';
 import 'package:glassmorphism_flutter/ui/widgets/path_painter.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
+  late final AnimationController _heartAnimationController =
+      AnimationController(
+    duration: const Duration(milliseconds: 500),
+    vsync: this,
+  )..repeat(reverse: true);
+  late final Animation<double> _animationScale = CurvedAnimation(
+    parent: _heartAnimationController,
+    curve: Curves.bounceOut,
+  );
+  late AnimationController _cardAnimationsController;
+  late Animation<double> _cardScale1;
+  late Animation<double> _cardScale2;
+  late Animation<double> _cardScale3;
+
+  @override
+  void initState() {
+    super.initState();
+    _cardAnimationsController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1000),
+    );
+
+    _cardScale1 = CurvedAnimation(
+      parent: _cardAnimationsController,
+      curve: const Interval(0.0, 0.400),
+    );
+    _cardScale2 = CurvedAnimation(
+      parent: _cardAnimationsController,
+      curve: const Interval(0.400, 0.800),
+    );
+    _cardScale3 = CurvedAnimation(
+      parent: _cardAnimationsController,
+      curve: const Interval(0.800, 0.999),
+    );
+
+    _cardAnimationsController.forward();
+  }
+
+  @override
+  void dispose() {
+    _cardAnimationsController.dispose();
+    _heartAnimationController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,18 +121,24 @@ class HomeScreen extends StatelessWidget {
                       Expanded(
                         flex: 1,
                         child: Column(
-                          children: const [
-                            HomeScreenGlassCard(
-                                title: 'Training',
-                                definition: 'hours',
-                                value: '15:33'),
-                            SizedBox(
+                          children: [
+                            ScaleTransition(
+                              scale: _cardScale1,
+                              child: const HomeScreenGlassCard(
+                                  title: 'Training',
+                                  definition: 'hours',
+                                  value: '15:33'),
+                            ),
+                            const SizedBox(
                               height: 15,
                             ),
-                            HomeScreenGlassCard(
-                                title: 'Distance',
-                                definition: 'Kilometters',
-                                value: '12'),
+                            ScaleTransition(
+                              scale: _cardScale2,
+                              child: const HomeScreenGlassCard(
+                                  title: 'Distance',
+                                  definition: 'Kilometters',
+                                  value: '12'),
+                            ),
                           ],
                         ),
                       ),
@@ -91,42 +147,49 @@ class HomeScreen extends StatelessWidget {
                       ),
                       Expanded(
                         flex: 2,
-                        child: GlassContainer(
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 10.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Padding(
-                                  padding: EdgeInsets.only(left: 8.0),
-                                  child: Text(
-                                    'Heart Rate',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 30,
+                        child: ScaleTransition(
+                          scale: _cardScale3,
+                          child: GlassContainer(
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 10.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Padding(
+                                    padding: EdgeInsets.only(left: 8.0),
+                                    child: Text(
+                                      'Heart Rate',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 30,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                SizedBox(
-                                  height: 200,
-                                  width: double.infinity,
-                                  child: CustomPaint(
-                                    painter: ChartPainter(),
+                                  SizedBox(
+                                    height: 200,
+                                    width: double.infinity,
+                                    child: CustomPaint(
+                                      painter: ChartPainter(),
+                                    ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 8.0),
-                                  child: Row(
-                                    children: const [
-                                      Text('BMP: 111'),
-                                      Icon(
-                                        Icons.favorite,
-                                        color: Colors.red,
-                                      ),
-                                    ],
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 8.0),
+                                    child: Row(
+                                      children: [
+                                        const Text('BMP: 111'),
+                                        ScaleTransition(
+                                          scale: _animationScale,
+                                          child: const Icon(
+                                            Icons.favorite,
+                                            color: Colors.red,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ),
