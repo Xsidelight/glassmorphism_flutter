@@ -2,6 +2,7 @@ import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:glassmorphism_flutter/ui/screens/food_screen.dart';
 import 'package:glassmorphism_flutter/ui/screens/profile_screen.dart';
+import 'package:glassmorphism_flutter/ui/widgets/background_image.dart';
 import 'package:glassmorphism_flutter/ui/widgets/glass.dart';
 import 'package:glassmorphism_flutter/ui/widgets/home_screen_body.dart';
 
@@ -21,11 +22,42 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   int _currentIndex = 0;
 
+  late PageController _pageController;
+  late double _pageOffset;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageOffset = 0;
+    _pageController = PageController(
+      initialPage: 0,
+    );
+    _pageController.addListener(
+      () => setState(() {
+        _pageOffset = _pageController.page ?? 0;
+      }),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
     return Scaffold(
       extendBody: true,
-      body: _bottomNavPages[_currentIndex],
+      body: Stack(
+        children: [
+          BackgroundImage(
+            pageCount: _bottomNavPages.length + 1,
+            screenSize: screenSize,
+            offset: _pageOffset,
+          ),
+          PageView(
+            children: _bottomNavPages,
+            controller: _pageController,
+            physics: const NeverScrollableScrollPhysics(),
+          ),
+        ],
+      ),
       bottomNavigationBar: GlassMorphism(
         start: .3,
         end: .3,
@@ -35,6 +67,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           selectedIndex: _currentIndex,
           backgroundColor: Colors.transparent,
           onItemSelected: (value) => setState(() {
+            _pageController.animateToPage(value,
+                duration: const Duration(milliseconds: 500),
+                curve: Curves.ease);
             _currentIndex = value;
           }),
           items: [
