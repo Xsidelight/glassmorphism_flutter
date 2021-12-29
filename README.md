@@ -17,4 +17,8 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Credits
 
-- Credit for the background image: [Peter De Lucia](https://unsplash.com/photos/7dmCHvtzc0o?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink)
+- Credit for the background image: [https://unsplash.com/photos/7dmCHvtzc0o?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink](https://unsplash.com/photos/7dmCHvtzc0o?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink)
+
+- Credit for lottie animation: [https://lottiefiles.com/oaov7yxkue](https://lottiefiles.com/oaov7yxkue)
+
+- Credit for glassmorphic design tutorial: [https://medium.com/@felipe_santos75/glassmorphism-in-flutter-56e9dc040c54](https://medium.com/@felipe_santos75/glassmorphism-in-flutter-56e9dc040c54)
