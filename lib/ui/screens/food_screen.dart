@@ -8,31 +8,24 @@ class FoodScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GlassMorphism(
-      start: .3,
-      end: .3,
-      borderRadius: 30,
-      child: Column(
-        children: [
-          GlassContainer(
-            child: SizedBox(
-              width: double.infinity,
-              child: Column(
-                children: [
-                  Lottie.asset('assets/lottie_animations/86034-fire-flame.json',
-                      height: 200),
-                  const Text(
-                    'Calories',
-                    style: TextStyle(fontSize: 30),
-                  ),
-                ],
-              ),
-              
+    return Column(
+      children: [
+        GlassContainer(
+          child: SizedBox(
+            width: double.infinity,
+            child: Column(
+              children: [
+                Lottie.asset('assets/lottie_animations/86034-fire-flame.json',
+                    height: 200),
+                const Text(
+                  'Calories',
+                  style: TextStyle(fontSize: 30),
+                ),
+              ],
             ),
           ),
-
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

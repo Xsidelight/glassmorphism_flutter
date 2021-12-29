@@ -51,10 +51,15 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             screenSize: screenSize,
             offset: _pageOffset,
           ),
-          PageView(
-            children: _bottomNavPages,
-            controller: _pageController,
-            physics: const NeverScrollableScrollPhysics(),
+          GlassMorphism(
+            start: .3,
+            end: .3,
+            borderRadius: 10,
+            child: PageView(
+              children: _bottomNavPages,
+              controller: _pageController,
+              physics: const NeverScrollableScrollPhysics(),
+            ),
           ),
         ],
       ),
