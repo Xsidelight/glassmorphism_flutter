@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CategoriesButton extends StatefulWidget {
-  CategoriesButton({
+  const CategoriesButton({
     Key? key,
     required this.label,
   }) : super(key: key);
@@ -33,7 +33,7 @@ class _CategoriesButtonState extends State<CategoriesButton> {
         child: Text(
           widget.label,
           style: const TextStyle(
-            fontSize: 20,
+            fontSize: 16,
           ),
         ),
       ),

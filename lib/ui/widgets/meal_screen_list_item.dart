@@ -59,7 +59,6 @@ class MealScreenListItem extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: -2,
             right: 15,
             child: CircleAvatar(
               backgroundColor: Colors.transparent,

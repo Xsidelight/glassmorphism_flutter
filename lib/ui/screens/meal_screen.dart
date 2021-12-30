@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:glassmorphism_flutter/data/categories_list.dart';
 import 'package:glassmorphism_flutter/data/meal_list.dart';
 import 'package:glassmorphism_flutter/ui/widgets/categories_button.dart';
 import 'package:glassmorphism_flutter/ui/widgets/meal_screen_list_item.dart';
@@ -10,71 +11,65 @@ class MealScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        GlassContainer(
-          child: SizedBox(
-            width: double.infinity,
-            child: Column(
-              children: [
-                Lottie.asset('assets/lottie_animations/86034-fire-flame.json',
-                    height: 200),
-                const Text(
-                  'Calories',
-                  style: TextStyle(fontSize: 30),
-                ),
-              ],
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          GlassContainer(
+            child: SizedBox(
+              width: double.infinity,
+              child: Column(
+                children: [
+                  Lottie.asset('assets/lottie_animations/86034-fire-flame.json',
+                      height: 200),
+                  const Text(
+                    'Calories',
+                    style: TextStyle(fontSize: 30),
+                  ),
+                ],
+              ),
             ),
           ),
-        ),
-        const Padding(
-          padding: EdgeInsets.all(20.0),
-          child: Text(
-            'Which type of food?',
-            style: TextStyle(
-              fontSize: 45,
-              fontWeight: FontWeight.bold,
+          const Padding(
+            padding: EdgeInsets.all(20.0),
+            child: Text(
+              'Which type of food?',
+              style: TextStyle(
+                fontSize: 45,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 12),
-          child: Wrap(
-            spacing: 12,
-            runSpacing: 12,
-            children: [
-              CategoriesButton(
-                label: 'Vegetarian',
-              ),
-              CategoriesButton(
-                label: 'Vegan',
-              ),
-              CategoriesButton(
-                label: 'Georgian',
-              ),
-              CategoriesButton(
-                label: 'Italian',
-              ),
-            ],
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 12),
+            child: Wrap(
+              spacing: 12,
+              runSpacing: 12,
+              children: categoriesList
+                  .map(
+                    (e) => CategoriesButton(label: e),
+                  )
+                  .toList(),
+            ),
           ),
-        ),
-        Flexible(
-          child: ListView(
-            shrinkWrap: true,
+          SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            children: mealList
-                .map(
-                  (e) => MealScreenListItem(
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: mealList
+                  .map(
+                    (e) => MealScreenListItem(
                       title: e.title,
                       description: e.description,
-                      imageUrl: e.imageUrl),
-                )
-                .toList(),
+                      imageUrl: e.imageUrl,
+                    ),
+                  )
+                  .toList(),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
