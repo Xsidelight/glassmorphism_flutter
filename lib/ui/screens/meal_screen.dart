@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:glassmorphism_flutter/data/meal_list.dart';
 import 'package:glassmorphism_flutter/ui/widgets/categories_button.dart';
-import 'package:glassmorphism_flutter/ui/widgets/food_screen_list_item.dart';
+import 'package:glassmorphism_flutter/ui/widgets/meal_screen_list_item.dart';
 import 'package:glassmorphism_flutter/ui/widgets/glass_container.dart';
 import 'package:lottie/lottie.dart';
 
@@ -66,7 +66,7 @@ class MealScreen extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             children: mealList
                 .map(
-                  (e) => FoodScreenListItem(
+                  (e) => MealScreenListItem(
                       title: e.title,
                       description: e.description,
                       imageUrl: e.imageUrl),

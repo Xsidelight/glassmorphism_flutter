@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'glass_container.dart';
 
-class FoodScreenListItem extends StatelessWidget {
-  const FoodScreenListItem({
+class MealScreenListItem extends StatelessWidget {
+  const MealScreenListItem({
     Key? key,
     required this.title,
     required this.description,
