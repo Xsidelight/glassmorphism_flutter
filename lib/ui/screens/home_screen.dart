@@ -1,6 +1,6 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:glassmorphism_flutter/ui/screens/food_screen.dart';
+import 'package:glassmorphism_flutter/ui/screens/meal_screen.dart';
 import 'package:glassmorphism_flutter/ui/screens/profile_screen.dart';
 import 'package:glassmorphism_flutter/ui/widgets/background_image.dart';
 import 'package:glassmorphism_flutter/ui/widgets/glass.dart';
@@ -16,7 +16,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   final _bottomNavPages = const <Widget>[
     HomeScreenBody(),
-    FoodScreen(),
+    MealScreen(),
     ProfileScreen(),
   ];
 
@@ -86,7 +86,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             ),
             BottomNavyBarItem(
               icon: const Icon(Icons.food_bank),
-              title: const Text('Food'),
+              title: const Text('Meal'),
               activeColor: Colors.white,
               textAlign: TextAlign.center,
             ),

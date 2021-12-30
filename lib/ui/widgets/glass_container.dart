@@ -13,8 +13,8 @@ class GlassContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GlassMorphism(
-      start: .3,
-      end: .3,
+      start: .4,
+      end: .4,
       borderRadius: 20,
       child: child,
     );
