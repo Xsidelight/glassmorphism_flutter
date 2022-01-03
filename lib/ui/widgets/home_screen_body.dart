@@ -190,10 +190,41 @@ class _HomeScreenBodyState extends State<HomeScreenBody>
             const SizedBox(
               height: 10,
             ),
-            const GlassContainer(
+            GlassContainer(
                 child: SizedBox(
-              height: 100,
+              height: 140,
               width: double.infinity,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Flexible(
+                      flex: 1,
+                      child: Column(
+                        children: const [
+                          Text(
+                            'Connect Smart Watch',
+                            style: TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                              'Connect your smart watch to fully use all app features!')
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child:
+                          Image.asset('assets/images/smart_watch_picture.png'),
+                    ),
+                  ],
+                ),
+              ),
             ))
           ],
         ),
