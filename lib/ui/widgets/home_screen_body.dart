@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:glassmorphism_flutter/ui/widgets/hs_glass_card.dart';
 import 'package:glassmorphism_flutter/ui/widgets/path_painter.dart';
 
-import 'glass.dart';
 import 'glass_container.dart';
 
 class HomeScreenBody extends StatefulWidget {
@@ -14,10 +13,8 @@ class HomeScreenBody extends StatefulWidget {
   State<HomeScreenBody> createState() => _HomeScreenBodyState();
 }
 
-class _HomeScreenBodyState extends State<HomeScreenBody>
-    with TickerProviderStateMixin {
-  late final AnimationController _heartAnimationController =
-      AnimationController(
+class _HomeScreenBodyState extends State<HomeScreenBody> with TickerProviderStateMixin {
+  late final AnimationController _heartAnimationController = AnimationController(
     duration: const Duration(milliseconds: 500),
     vsync: this,
   )..repeat(reverse: true);
@@ -72,9 +69,9 @@ class _HomeScreenBodyState extends State<HomeScreenBody>
             const SizedBox(
               height: 40,
             ),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
+              children: [
                 Text(
                   'Welcome to \nGlassFit!',
                   style: TextStyle(fontSize: 30),
@@ -117,9 +114,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody>
                       ScaleTransition(
                         scale: _cardScale1,
                         child: const HomeScreenGlassCard(
-                            title: 'Training',
-                            definition: 'hours',
-                            value: '15:33'),
+                            title: 'Training', definition: 'hours', value: '15:33'),
                       ),
                       const SizedBox(
                         height: 15,
@@ -127,9 +122,10 @@ class _HomeScreenBodyState extends State<HomeScreenBody>
                       ScaleTransition(
                         scale: _cardScale2,
                         child: const HomeScreenGlassCard(
-                            title: 'Distance',
-                            definition: 'Kilometters',
-                            value: '12'),
+                          title: 'Distance',
+                          definition: 'Kilometers',
+                          value: '12',
+                        ),
                       ),
                     ],
                   ),
@@ -198,10 +194,10 @@ class _HomeScreenBodyState extends State<HomeScreenBody>
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
                   children: [
-                    Flexible(
+                    const Flexible(
                       flex: 1,
                       child: Column(
-                        children: const [
+                        children: [
                           Text(
                             'Connect Smart Watch',
                             style: TextStyle(
@@ -212,15 +208,13 @@ class _HomeScreenBodyState extends State<HomeScreenBody>
                           SizedBox(
                             height: 5,
                           ),
-                          Text(
-                              'Connect your smart watch to fully use all app features!')
+                          Text('Connect your smart watch to fully use all app features!')
                         ],
                       ),
                     ),
                     Expanded(
                       flex: 1,
-                      child:
-                          Image.asset('assets/images/smart_watch_picture.png'),
+                      child: Image.asset('assets/images/smart_watch_picture.png'),
                     ),
                   ],
                 ),
