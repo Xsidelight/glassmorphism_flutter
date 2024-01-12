@@ -4,11 +4,11 @@ import 'glass_container.dart';
 
 class HomeScreenGlassCard extends StatelessWidget {
   const HomeScreenGlassCard({
-    Key? key,
+    super.key,
     required this.title,
     required this.definition,
     required this.value,
-  }) : super(key: key);
+  });
 
   final String title;
   final String definition;

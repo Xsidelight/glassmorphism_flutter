@@ -6,8 +6,8 @@ import 'glass_container.dart';
 
 class HomeScreenBody extends StatefulWidget {
   const HomeScreenBody({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<HomeScreenBody> createState() => _HomeScreenBodyState();

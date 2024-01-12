@@ -7,7 +7,7 @@ import 'package:glassmorphism_flutter/ui/widgets/glass.dart';
 import 'package:glassmorphism_flutter/ui/widgets/home_screen_body.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -56,9 +56,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             end: .3,
             borderRadius: 10,
             child: PageView(
-              children: _bottomNavPages,
               controller: _pageController,
               physics: const NeverScrollableScrollPhysics(),
+              children: _bottomNavPages,
             ),
           ),
         ],
@@ -93,7 +93,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             BottomNavyBarItem(
               icon: const Icon(Icons.account_circle),
               title: const Text(
-                'Messages test for mes teset test test ',
+                'Messages test for mes test test test ',
               ),
               activeColor: Colors.white,
               textAlign: TextAlign.center,

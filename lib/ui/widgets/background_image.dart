@@ -3,11 +3,11 @@ import 'package:glassmorphism_flutter/core/constants.dart';
 
 class BackgroundImage extends StatelessWidget {
   const BackgroundImage({
-    Key? key,
+    super.key,
     required this.pageCount,
     required this.screenSize,
     required this.offset,
-  }) : super(key: key);
+  });
 
   final Size screenSize;
 

@@ -4,9 +4,9 @@ import 'glass.dart';
 
 class GlassContainer extends StatelessWidget {
   const GlassContainer({
-    Key? key,
+    super.key,
     required this.child,
-  }) : super(key: key);
+  });
 
   final Widget child;
 

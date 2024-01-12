@@ -7,7 +7,7 @@ import 'package:glassmorphism_flutter/ui/widgets/glass_container.dart';
 import 'package:lottie/lottie.dart';
 
 class MealScreen extends StatelessWidget {
-  const MealScreen({Key? key}) : super(key: key);
+  const MealScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

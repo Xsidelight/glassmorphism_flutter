@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:glassmorphism_flutter/ui/screens/home_screen.dart';
 
 class GlassmorphismApp extends StatelessWidget {
-  const GlassmorphismApp({Key? key}) : super(key: key);
+  const GlassmorphismApp({super.key});
 
   @override
   Widget build(BuildContext context) {

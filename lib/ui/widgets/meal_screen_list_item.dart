@@ -4,11 +4,11 @@ import 'glass_container.dart';
 
 class MealScreenListItem extends StatelessWidget {
   const MealScreenListItem({
-    Key? key,
+    super.key,
     required this.title,
     required this.description,
     required this.imageUrl,
-  }) : super(key: key);
+  });
 
   final String title;
   final String description;
@@ -27,8 +27,7 @@ class MealScreenListItem extends StatelessWidget {
             ),
             child: GlassContainer(
               child: Container(
-                padding: const EdgeInsets.only(
-                    left: 15, right: 15, top: 15, bottom: 2),
+                padding: const EdgeInsets.only(left: 15, right: 15, top: 15, bottom: 2),
                 height: 180,
                 width: 150,
                 child: Column(
@@ -62,11 +61,11 @@ class MealScreenListItem extends StatelessWidget {
             right: 15,
             child: CircleAvatar(
               backgroundColor: Colors.transparent,
+              radius: 45,
               child: Image.asset(
                 imageUrl,
                 scale: .6,
               ),
-              radius: 45,
             ),
           ),
         ],
