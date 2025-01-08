@@ -73,8 +73,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           backgroundColor: Colors.transparent,
           onItemSelected: (value) => setState(() {
             _pageController.animateToPage(value,
-                duration: const Duration(milliseconds: 500),
-                curve: Curves.ease);
+                duration: const Duration(milliseconds: 500), curve: Curves.ease);
             _currentIndex = value;
           }),
           items: [
@@ -93,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             BottomNavyBarItem(
               icon: const Icon(Icons.account_circle),
               title: const Text(
-                'Messages test for mes test test test ',
+                'Profile',
               ),
               activeColor: Colors.white,
               textAlign: TextAlign.center,
