@@ -12,9 +12,9 @@ dependencies:
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^1.0.6
-  bottom_navy_bar: ^6.0.0
-  lottie: ^3.0.0
+  cupertino_icons: ^1.0.8
+  bottom_navy_bar: ^6.1.0
+  lottie: ^3.3.0
 
 dev_dependencies:
   flutter_test:
